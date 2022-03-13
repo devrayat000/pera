@@ -1,0 +1,14 @@
+{
+	"sqltools.connections": [
+		{
+			"previewLimit": 50,
+			"server": "arjuna.db.elephantsql.com",
+			"port": 5432,
+			"driver": "PostgreSQL",
+			"name": "pera",
+			"username": "itsigwpv",
+			"password": "r4Wr0QUMuod8BXfXxcd4h82E3tnarymC",
+			"database": "itsigwpv"
+		}
+	]
+}
