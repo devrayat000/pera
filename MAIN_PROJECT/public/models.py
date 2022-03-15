@@ -7,16 +7,18 @@ from django.db import models
 # Announcements from CRs and Admins
 class announcements(models.Model):
     title = models.CharField(max_length=255)
+    description = models.TextField(max_length=500, blank=True) 
     created_at = models.DateTimeField(default=now)
 
     def __str__(self) -> str:
         return self.title
 
 
+
 # Weekly and sessional assignments
 class assignments(models.Model):
     # subject/course the assignment belongs to
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=200)
     title = models.CharField(max_length=255)
     # time before the assignment should/must be submitted
     due = models.DateTimeField()
@@ -33,7 +35,7 @@ class class_tests(models.Model):
         WRITTEN = "written"
 
     # subject/course the class test belongs to
-    subject = models.CharField(max_length=255)
+    subject = models.CharField(max_length=200)
     about = models.TextField()
     # time when the class test will be held
     occurring = models.DateTimeField()
