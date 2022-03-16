@@ -7,7 +7,7 @@ admin.site.site_header = 'Mechanical 20 Dashboard'
 admin.site.register(announcements)
 admin.site.register(assignments)
 admin.site.register(class_tests)
-
+# admin.site.register(Demo)
 
 
 # Register your models here.
