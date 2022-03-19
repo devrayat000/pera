@@ -7,18 +7,25 @@ urlpatterns = [
     path('announcement-list/', views.announcementList, name = "announcementList"),
     path('assignment-list/', views.assignmentList, name = "assignmentList"),
     path('class_test-list/', views.classtestsList, name = "classtestsList"),
+    path('help-list/', views.helpList, name = "helpList"),
+
 
     path('announcement-create/', views.announcementCreate, name = "announcementCreate"),
     path('class_test-create/', views.classtestCreate, name = "classtestCreate"),
     path('assignment-create/', views.assignmentCreate, name = "assignmentCreate"),
+    path('help-create/', views.helpCreate, name = "helpCreate"),
 
     path('announcement-update/<str:pk>/', views.announcementUpdate, name = "announcementUpdate"),
     path('assignment-update/<str:pk>/', views.assignmentUpdate, name = "assignmentUpdate"),
     path('class_test-update/<str:pk>/', views.classtestUpdate, name = "classtestUpdate"),
+    path('help-update/<str:pk>/', views.helpUpdate, name = "helpUpdate"),
 
     path('announcement-delete/<str:pk>/', views.announcementDelete, name = "announcementDelete"),
     path('assignment-delete/<str:pk>/', views.assignmentDelete, name = "assignmentDelete"),
     path('class_test-delete/<str:pk>/', views.classtestDelete, name = "classtestDelete"),
+    path('help-delete/<str:pk>/', views.helpDelete, name = "helpDelete"),
+
+ 
 
 #     path('demo-list/', views.DemoList, name = "DemoList"),
 #     path('demo-create/', views.DemoCreate, name = "DemoCreate"),

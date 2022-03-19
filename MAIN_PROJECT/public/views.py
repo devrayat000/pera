@@ -5,11 +5,10 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from .serializers import announcementsSerializer, assignmentsSerializer, classtestsSerializer
+from .serializers import announcementsSerializer, assignmentsSerializer, classtestsSerializer, helpwewantSerializer
 
 
-from .models import announcements, class_tests, assignments
-
+from .models import announcements, class_tests, assignments, helpwewant
 
 
 @api_view(['GET'])
@@ -22,6 +21,7 @@ def apiOverview(request):
     }
     return Response(api_urls)
 
+###### LIST ##############
 
 @api_view(['GET'])
 def announcementList(request):
@@ -45,9 +45,16 @@ def classtestsList(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
+def helpList(request):
+
+    helps = helpwewant.objects.all()
+    serializer =  helpwewantSerializer(helps, many = True)
+    return Response(serializer.data)
+
 # POST # 
 
-
+###### CREATE ########################################################################################################################################
 @api_view(['POST'])
 def announcementCreate(request):
 
@@ -78,7 +85,17 @@ def classtestCreate(request):
 
     return Response(serializer.data)
 
-#UPDATE POST#
+@api_view(['POST'])
+def helpCreate(request):
+
+    serializer = helpwewantSerializer(data = request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+######################################################################UPDATE POST#########################################################################
 
 @api_view(['POST'])
 def announcementUpdate(request, pk):
@@ -110,7 +127,17 @@ def assignmentUpdate(request, pk):
 
     return Response(serializer.data)
 
-#Delete Post#
+@api_view(['POST'])
+def helpUpdate(request, pk):
+    announce = helpwewant.objects.get(id = pk) 
+    serializer = helpwewantSerializer(data = request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
+
+#########################################################################Delete Post###################################################################
 
 @api_view(['DELETE'])
 def announcementDelete(request, pk):
@@ -130,6 +157,14 @@ def classtestDelete(request, pk):
 @api_view(['DELETE'])
 def assignmentDelete(request, pk):
     announce = assignments.objects.get(id = pk) 
+    announce.delete()
+    
+    return Response("That things you want to delete has been deleted Bujhsen???! !")
+
+
+@api_view(['DELETE'])
+def helpDelete(request, pk):
+    announce = helpwewant.objects.get(id = pk) 
     announce.delete()
     
     return Response("That things you want to delete has been deleted Bujhsen???! !")

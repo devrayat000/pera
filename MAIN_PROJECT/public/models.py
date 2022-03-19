@@ -46,6 +46,21 @@ class class_tests(models.Model):
     def __str__(self) -> str:
         return self.about
 
+
+class helpwewant(models.Model):
+    student_id = models.CharField(max_length=7)
+    question = models.TextField(max_length=500) 
+    answered_by = models.TextField(max_length=15, blank=True)
+    asnwer = models.TextField(max_length=500, blank=True)
+
+
+    def __str__(self) -> str:
+        return self.question
+
+    
+
+
+
 # class Demo(models.Model):
 #     name = models.CharField(max_length=100)
 
