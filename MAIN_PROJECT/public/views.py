@@ -1,4 +1,4 @@
-from asyncio import Task
+import datetime
 from django.http import JsonResponse
 from django.shortcuts import render
  
@@ -11,6 +11,10 @@ from .serializers import announcementsSerializer, assignmentsSerializer, classte
 from .models import announcements, class_tests, assignments, helpwewant
 
 
+
+####################### OTHERS #######################################################################################
+
+
 @api_view(['GET'])
 def apiOverview(request):
     api_urls = {
@@ -20,6 +24,55 @@ def apiOverview(request):
         'Delete' : '/announcement-delete/',
     }
     return Response(api_urls)
+
+@api_view(['GET'])
+def counterAPI(request):
+    curr_week = 0
+    thisweeks_assignments = []
+    thisweeks_cts = []
+
+    my_date = datetime.date.today()
+    year, week_num, day_of_week = my_date.isocalendar()
+
+    curr_week = week_num - 3 
+
+    asses = assignments.objects.all()
+    
+    for i in asses:
+        i_date = i.occurring
+        i_year, i_week_num, i_day_of_week = i_date.isocalendar()
+
+        if i_week_num == week_num:
+            thisweeks_assignments.append(i)
+
+    thisweeks_assignments_count = len(thisweeks_assignments)
+    
+
+    cts = class_tests.objects.all()
+    
+    for i in cts:
+        i_date = i.occurring
+        i_year, i_week_num, i_day_of_week = i_date.isocalendar()
+
+        if i_week_num == week_num:
+            thisweeks_cts.append(i)
+
+    thisweeks_cts_count = len(thisweeks_cts)
+
+    total_assignments_count = len(asses)
+    total_cts_count = len(cts)
+
+    counter = {
+        'current_week_no' : curr_week,
+        'this_weeks_assignments_count' : thisweeks_assignments_count,
+        'this_weeks_cts_count' : thisweeks_cts_count,
+        'total_assignments_count' : total_assignments_count,
+        'total_cts_count' : total_cts_count,
+    }
+
+    return Response(counter)
+
+
 
 ###### LIST ##############
 

@@ -8,7 +8,7 @@ from django.db import models
 class announcements(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(max_length=500, blank=True) 
-    created_at = models.DateTimeField(default=now)
+    created_at = models.DateField(default=now)
 
     def __str__(self) -> str:
         return self.title
@@ -21,8 +21,8 @@ class assignments(models.Model):
     subject = models.CharField(max_length=200)
     title = models.CharField(max_length=255)
     # time before the assignment should/must be submitted
-    due = models.DateTimeField()
-    created_at = models.DateTimeField(default=now)
+    due = models.DateField()
+    created_at = models.DateField(default=now)
 
     def __str__(self) -> str:
         return self.title
@@ -38,10 +38,10 @@ class class_tests(models.Model):
     subject = models.CharField(max_length=200)
     about = models.TextField()
     # time when the class test will be held
-    occurring = models.DateTimeField()
+    occurring = models.DateField()
     # class text type field (can be either mcq or written)
     type = models.CharField(max_length=10, choices=CtType.choices, default=CtType.MCQ)
-    created_at = models.DateTimeField(default=now)
+    created_at = models.DateField(default=now)
 
     def __str__(self) -> str:
         return self.about
