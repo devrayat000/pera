@@ -9,7 +9,7 @@ urlpatterns = [
     path('class_test-list/', views.classtestsList, name = "classtestsList"),
     path('help-list/', views.helpList, name = "helpList"),
 
-     path('counter/', views.counterAPI, name = "counterAPI"),
+    path('counter/', views.counterAPI, name = "counterAPI"),
 
 
     path('announcement-create/', views.announcementCreate, name = "announcementCreate"),
