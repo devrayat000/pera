@@ -39,7 +39,7 @@ def counterAPI(request):
     asses = assignments.objects.all()
     
     for i in asses:
-        i_date = i.occurring
+        i_date = i.due
         i_year, i_week_num, i_day_of_week = i_date.isocalendar()
 
         if i_week_num == week_num:
