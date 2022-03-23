@@ -1,3 +1,4 @@
+from pyexpat import model
 from django.utils.timezone import now
 from django.db import models
 
@@ -33,7 +34,7 @@ class class_tests(models.Model):
     class CtType(models.enums.Choices):
         MCQ = "mcq"
         WRITTEN = "written"
-
+        #VIVA
     # subject/course the class test belongs to
     subject = models.CharField(max_length=200)
     about = models.TextField()
@@ -42,7 +43,7 @@ class class_tests(models.Model):
     # class text type field (can be either mcq or written)
     type = models.CharField(max_length=10, choices=CtType.choices, default=CtType.MCQ)
     created_at = models.DateField(default=now)
-
+    #section
     def __str__(self) -> str:
         return self.about
 
